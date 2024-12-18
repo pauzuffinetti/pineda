@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
-import { Box, Drawer, ListItem, ListItemButton, ListItemIcon, ListITemText } from "@mui/material";
-import { HomeIcon } from "@mui/icons-material/home";
-import { InfoIcon } from "@mui/info-material/Info";
-import { FlatWareIcon } from "@mui/icons-material/CommentRounded";
-import { EventIcon } from "@mui/icons-material/PhoneRounded";
-import { CreateIcon } from "@mui/icons-material/ShoppingCartRounded";
-import { PersonIcon } from "@mui/icons-material/ShoppingCartRounded";
-
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import FlatwareIcon from "@mui/icons-material/Flatware";
+import EventIcon from "@mui/icons-material/Event";
+import CreateIcon from "@mui/icons-material/Create";
+import PersonIcon from "@mui/icons-material/Person";
 
 
 const Navbar = () => {
@@ -25,7 +24,7 @@ const Navbar = () => {
         },
         {
             text:"Productos",
-            icon:<FlatWareIcon />
+            icon:<FlatwareIcon />
         },
         {
             text:"Eventos",
@@ -53,8 +52,41 @@ const Navbar = () => {
         <a href="">Productos</a>
         <a href="">Eventos</a>
         <a href="">Blog</a>
-        <a href="">Contacto</a>
+
+        <button className="primary-button">
+            Contacto
+        </button>
       </div>
+
+      <div className="navbar-menu-container">
+        <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
+      </div>
+
+      <Drawer open={openMenu} onClose={() => setOpenMenu(false)}
+        anchor="right">
+
+        <Box sx={{ width: 250 }}
+        role="presentation"
+        onClick={() => setOpenMenu(false)}
+        onKeyDown={() => setOpenMenu(false)}>
+
+            <List>
+                {menuOptions.map((item) => (
+                    <ListItem key={item.text} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText primary={item.text}/>
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+
+
+
+      </Drawer>
+
+
     </nav>
   )
 }
